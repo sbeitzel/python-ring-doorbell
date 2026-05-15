@@ -158,6 +158,12 @@ class RingDoorBell(RingGeneric):
     @property
     def battery_life(self) -> int | None:
         """Return battery life."""
+        if (active := self._health_attrs.get("active_battery")) is not None and (
+            batteries := self._health_attrs.get("batteries")
+        ):
+            for bat in batteries:
+                if bat["battery_number"] == active:
+                    return bat["battery_percentage"]
         bl = self._attrs.get("battery_life")
         if bl is None:
             return None

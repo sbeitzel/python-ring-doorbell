@@ -149,10 +149,11 @@ async def test_dual_battery_properties(ring):
     assert bat1["battery_voltage"] == 3562.0
 
     assert bat2["battery_number"] == 2
-    assert bat2["battery_percentage"] == 100
+    assert bat2["battery_percentage"] == 97
     assert bat2["battery_percentage_category"] == "very_good"
 
-    assert dev.active_battery == 1
+    assert dev.active_battery == 2
+    assert dev.battery_life == 97
 
 
 async def test_stickup_cam_controls(ring, aioresponses_mock):

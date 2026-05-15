@@ -270,7 +270,7 @@
             "address": "123 Main St",
             "alerts": {"connection": "online"},
             "battery_life": 12,
-            "battery_life_2": 100,
+            "battery_life_2": 97,
             "description": "Back Yard",
             "device_id": "aacdef456",
             "external_connection": false,

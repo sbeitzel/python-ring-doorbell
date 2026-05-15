@@ -1,6 +1,6 @@
 {
     "device_health": {
-        "active_battery": 1,
+        "active_battery": 2,
         "average_signal_category": "good",
         "average_signal_strength": -45,
         "batteries": [
@@ -13,7 +13,7 @@
             },
             {
                 "battery_number": 2,
-                "battery_percentage": 100,
+                "battery_percentage": 97,
                 "battery_percentage_category": "very_good",
                 "battery_voltage": 4144.0,
                 "battery_voltage_category": "very_good"
