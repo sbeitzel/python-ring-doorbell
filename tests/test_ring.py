@@ -18,7 +18,7 @@ def test_basic_attributes(ring):
     assert len(data["chimes"]) == 1
     assert len(data["doorbots"]) == 1
     assert len(data["authorized_doorbots"]) == 1
-    assert len(data["stickup_cams"]) == 1
+    assert len(data["stickup_cams"]) == 2
     assert len(data["other"]) == 1
 
 
@@ -111,6 +111,48 @@ def test_stickup_cam_attributes(ring):
     assert dev.has_capability("history") is True
     assert dev.lights == "off"
     assert dev.siren == 0
+
+
+async def test_single_battery_properties(ring):
+    dev = ring.devices()["stickup_cams"][0]
+    assert dev.battery_life == 100
+    assert dev.batteries is None
+    assert dev.active_battery is None
+
+    await dev.async_update_health_data()
+
+    assert dev.batteries is not None
+    assert len(dev.batteries) == 1
+    assert dev.batteries[0]["battery_number"] == 1
+    assert dev.batteries[0]["battery_percentage"] == 100
+    assert dev.batteries[0]["battery_voltage"] == 4144.0
+    assert dev.active_battery == 1
+
+
+async def test_dual_battery_properties(ring):
+    devs = ring.devices()["stickup_cams"]
+    dev = next(d for d in devs if d.id == 987655)
+
+    assert dev.kind == "stickup_cam_v4"
+    assert dev.has_capability("battery") is True
+    assert dev.battery_life == 12
+
+    await dev.async_update_health_data()
+
+    assert dev.batteries is not None
+    assert len(dev.batteries) == 2
+
+    bat1, bat2 = dev.batteries
+    assert bat1["battery_number"] == 1
+    assert bat1["battery_percentage"] == 12
+    assert bat1["battery_percentage_category"] == "very_poor"
+    assert bat1["battery_voltage"] == 3562.0
+
+    assert bat2["battery_number"] == 2
+    assert bat2["battery_percentage"] == 100
+    assert bat2["battery_percentage_category"] == "very_good"
+
+    assert dev.active_battery == 1
 
 
 async def test_stickup_cam_controls(ring, aioresponses_mock):

@@ -68,3 +68,6 @@ target/
 *.cache
 credentials.json
 *.code-workspace
+
+# Coding agent stuff
+.claude

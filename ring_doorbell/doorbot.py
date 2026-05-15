@@ -158,19 +158,20 @@ class RingDoorBell(RingGeneric):
     @property
     def battery_life(self) -> int | None:
         """Return battery life."""
-        if (
-            bl1 := self._attrs.get("battery_life")
-        ) is None and "battery_life_2" not in self._attrs:
+        bl = self._attrs.get("battery_life")
+        if bl is None:
             return None
+        return int(bl)
 
-        value = 0
-        if bl1:
-            value += int(bl1)
+    @property
+    def batteries(self) -> list[dict] | None:
+        """Return per-battery data from the health payload, or None if unavailable."""
+        return self._health_attrs.get("batteries") or None
 
-        if bl2 := self._attrs.get("battery_life_2"):  # Camera has two battery bays
-            value += int(bl2)
-
-        return min(value, 100)
+    @property
+    def active_battery(self) -> int | None:
+        """Return the index of the battery bay currently powering the device."""
+        return self._health_attrs.get("active_battery")
 
     def _get_chime_setting(self, setting: str) -> Any | None:
         if (settings := self._attrs.get("settings")) and (

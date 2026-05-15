@@ -91,7 +91,7 @@ async def test_list(ring):
 
         expected = (
             "Front Door (lpd_v1)\nBack Door (lpd_v1)\nDownstairs (chime)\n"
-            "Front (hp_cam_v1)\nIngress (intercom_handset_audio)\n"
+            "Front (hp_cam_v1)\nBack Yard (stickup_cam_v4)\nIngress (intercom_handset_audio)\n"
         )
 
         assert res.exit_code == 0

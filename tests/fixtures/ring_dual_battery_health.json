@@ -1,0 +1,35 @@
+{
+    "device_health": {
+        "active_battery": 1,
+        "average_signal_category": "good",
+        "average_signal_strength": -45,
+        "batteries": [
+            {
+                "battery_number": 1,
+                "battery_percentage": 12,
+                "battery_percentage_category": "very_poor",
+                "battery_voltage": 3562.0,
+                "battery_voltage_category": "good"
+            },
+            {
+                "battery_number": 2,
+                "battery_percentage": 100,
+                "battery_percentage_category": "very_good",
+                "battery_voltage": 4144.0,
+                "battery_voltage_category": "very_good"
+            }
+        ],
+        "battery_percentage": 12,
+        "battery_percentage_category": "very_poor",
+        "battery_voltage": 3562.0,
+        "battery_voltage_category": "good",
+        "firmware": "2.1.0",
+        "firmware_out_of_date": false,
+        "id": 987655,
+        "latest_signal_category": "good",
+        "latest_signal_strength": -52,
+        "updated_at": "2024-01-15T10:00:00Z",
+        "wifi_is_ring_network": false,
+        "wifi_name": "ring_mock_wifi"
+    }
+}

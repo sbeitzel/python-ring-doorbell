@@ -223,6 +223,11 @@ def aioresponses_mock_fixture(request, devices_fixture, putpatch_status_fixture)
             repeat=True,
         )
         mock.get(
+            "https://api.ring.com/clients_api/doorbots/987655/health",
+            payload=load_fixture_as_dict("ring_dual_battery_health.json"),
+            repeat=True,
+        )
+        mock.get(
             re.compile(r"https:\/\/api\.ring\.com\/clients_api\/doorbots\/\d+\/health"),
             payload=load_fixture_as_dict("ring_doorboot_health_attrs.json"),
             repeat=True,
